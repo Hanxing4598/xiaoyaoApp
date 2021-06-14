@@ -8,6 +8,7 @@
 			:current="index">
 			<swiper-item v-for="(item, idx) in videoList" :key="idx" class="swiper-item">
 					<!-- 视频渲染数预加载数影响性能 -->
+					{{index-idx}}
 					<div v-if="Math.abs(index-idx)<=1" class="video-box">
 						<block v-if="item.src">
 							<chunlei-video class="video" :src="item.src"  :height="height" :width="width"
@@ -17,24 +18,24 @@
 							>
 							</chunlei-video>
 							
-							<cover-view class="cover-view-left">
-								<cover-view class="left-view">
+							<view class="cover-view-left">
+								<view class="left-view">
 									<!-- #ifdef APP-PLUS-NVUE -->
 									<text class="left-text">@{{item.at}}</text>
 									<!-- #endif -->
 									<!-- #ifndef APP-PLUS-NVUE -->
-									<cover-view class="left-text">@{{item.at}}</cover-view>
+									<view class="left-text">@{{item.at}}</view>
 									<!-- #endif -->
-								</cover-view>
-								<cover-view class="left-view">
+								</view>
+								<view class="left-view">
 									<!-- #ifdef APP-PLUS-NVUE -->
 									<text class="left-text">{{item.content}}</text>
 									<!-- #endif -->
 									<!-- #ifndef APP-PLUS-NVUE -->
-									<cover-view class="left-text">{{item.content}}</cover-view>
+									<view class="left-text">{{item.content}}</view>
 									<!-- #endif -->
-								</cover-view>
-							</cover-view>
+								</view>
+							</view>
 							<cover-view class="cover-view-right">
 								<cover-image :src="item.avater" class="avater img" @click.stop="tapAvater"></cover-image>
 								<!-- #ifdef APP-PLUS-NVUE -->
@@ -42,20 +43,17 @@
 								<text class="right-text"></text>
 								<!-- #endif -->
 								<!-- #ifndef APP-PLUS-NVUE -->
-								<cover-view class="right-text-avater">+</cover-view>
-								<cover-view class="right-text"></cover-view>
+								<view class="right-text-avater">+</view>
+								<view class="right-text"></view>
 								<!-- #endif -->
-								
-								<cover-image :src="item.check?'/static/video/aixinRed.png':'/static/video/aixin.png'" class="img" @click.stop="tapLove"></cover-image>
-								
+								<view class="cuIcon-likefill operate-icon" :class="{ active: item.check }" @click.stop="tapLove"></view>
 								<!-- #ifdef APP-PLUS-NVUE -->
 								<text class="right-text">{{item.like}}</text>
 								<!-- #endif -->
 								<!-- #ifndef APP-PLUS-NVUE -->
 								<cover-view class="right-text">{{item.like}}</cover-view>
 								<!-- #endif -->
-								
-								<cover-image src="/static/video/xiaoxi.png" class="img" @click.stop="tapMsg(item)"></cover-image>
+								<view class="cuIcon-messagefill operate-icon" @click.stop="tapMsg(item)"></view>
 								
 								<!-- #ifdef APP-PLUS-NVUE -->
 								<text class="right-text">{{item.comment}}</text>
@@ -63,9 +61,7 @@
 								<!-- #ifndef APP-PLUS-NVUE -->
 								<cover-view class="right-text">{{item.comment}}</cover-view>
 								<!-- #endif -->
-								
-								<cover-image src="/static/video/share-fill.png" class="img" @click.stop="tapShare"></cover-image>
-								
+								<view class="cuIcon-forwardfill operate-icon" @click.stop="tapShare"></view>
 								<!-- #ifdef APP-PLUS-NVUE -->
 								<text class="right-text">分享</text>
 								<!-- #endif -->
@@ -137,8 +133,10 @@
 				}else{
 					total++
 				}
+				
 				return total
 			},0)
+			
 			if(!this.index){
 				this.$nextTick(()=>{
 					this.videoPlay(this.index)
@@ -171,39 +169,36 @@
 				
 			},
 			pushVideoList(){
-				let promise = new Promise((resolve,reject)=>{
-					uni.request({
-						url: 'https://api.apiopen.top/videoRecommend?id=127397',
-						success: (res) => {
-							let videoGroup = []
-							for (let item of res.data.result) {
-								if(item.type == 'videoSmallCard'){
-									videoGroup.push({
-										src:item.data.playUrl,
-										content:item.data.title,
-										flag:false,
-										check:false,
-										like:'7w',
-										comment:'1045',
-										at:item.data.author.name,
-										id:item.data.author.icon,
-										avater:item.data.author.icon,
-										initialTime:0,
-										duration:item.data.duration
-									})
-								}
-							}
-							
-							let len = this.videoList.filter(item=>item.src).length
-							for(let i = len;i<len+videoGroup.length;i++){
-								this.$set(this.videoList,i,videoGroup[i-len])
-								
-							}
-							resolve()
+				return getVideoList({
+					page: 1,
+					pageNum: 10
+				}).then(res => {
+					let videoGroup = []
+					if (res.code === 200) {
+						for (let item of res.result.data) {
+							videoGroup.push({
+								src: item.video_source,
+								content: item.video_content,
+								flag: false,
+								check: false,
+								like: item.like_num,
+								comment: item.comment_num,
+								at: '小团团',
+								id: 'http://img.kaiyanapp.com/255365dbfc2622930eb0cdb33e43abf0.jpeg?imageMogr2/quality/60/format/jpg',
+								avater: 'http://img.kaiyanapp.com/255365dbfc2622930eb0cdb33e43abf0.jpeg?imageMogr2/quality/60/format/jpg',
+								initialTime:0,
+								duration: item.duration
+							})
 						}
-					})
-				}) 
-				return promise
+						
+						let len = this.videoList.filter(item=>item.src).length
+						console.log('len', len, this.videoList, videoGroup.length)
+						for(let i = len;i<len+videoGroup.length;i++){
+							this.$set(this.videoList,i,videoGroup[i-len])
+							
+						}
+					}
+				})
 			},
 			tapLove(){
 				this.videoList[this.index].check = !this.videoList[this.index].check
@@ -301,11 +296,14 @@
 		/* #endif */
 	}
 	.left-view{
+		white-space: normal;
 		margin-bottom: 20upx;
 	}
 	.left-text{
+		width: 100%;
 		font-size: 16px;
 		color: #FFFFFF;
+		word-wrap: anywhere
 	}
 	.avater{
 		border-radius: 50upx;
@@ -369,5 +367,13 @@
 		flex-direction: column;
 		/* #endif */
 		flex: 1; 
+	}
+	.operate-icon {
+		color: #fff;
+		font-size: 80rpx;
+		text-align: center;
+		&.active {
+			color: rgb(253,53,91);
+		}
 	}
 </style>
