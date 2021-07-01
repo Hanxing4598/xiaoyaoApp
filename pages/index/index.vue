@@ -11,7 +11,7 @@
 			<view class="action text-white" @click="navChange" data-cur="pic">
 				<view :class="PageCur === 'pic' ? 'cuIcon-picfill': 'cuIcon-pic'"></view> 随便看
 			</view>
-			<view class="action text-white add-action" >
+			<view class="action text-white add-action" @click="toPage('/pages/upload/upload')" >
 				<button class="cu-btn cuIcon-add bg-white shadow"></button>
 				发布
 			</view>
@@ -65,6 +65,11 @@
 				this.PageCur = e.currentTarget.dataset.cur
 				uni.navigateTo({
 					url: `/pages/tabPage/${this.PageCur}/${this.PageCur}?withFooter=true`
+				})
+			},
+			toPage(url) {
+				uni.navigateTo({
+					url
 				})
 			}
 		}
