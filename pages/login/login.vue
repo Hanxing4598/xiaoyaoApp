@@ -22,7 +22,7 @@
 			</view>
 			<button form-type="submit" type="primary">登录</button>
 			<view class="other">
-				<navigator url="/pages/login/register">立即注册</navigator>
+				<navigator url="/pages/register/register">立即注册</navigator>
 				<navigator url="/pages/login/forgetPass">忘记密码</navigator>
 			</view>
 		</form>

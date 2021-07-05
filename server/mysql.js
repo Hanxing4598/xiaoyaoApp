@@ -22,6 +22,7 @@ var mysql = {
 	 * @param {Object} limit
 	 */
 	selectPager(tableName, limit, fieldStr, where) {
+		console.log(111)
 		return new Promise((resolve, rej) => {
 			console.log(sql.table(tableName).field(fieldStr).where(where).limit(limit[0], limit[1]).select())
 			sql.table(tableName).field(fieldStr).where(where).limit(limit[0], limit[1]).select(true).exec().then(data => {

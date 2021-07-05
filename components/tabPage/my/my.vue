@@ -1,9 +1,9 @@
 <template>
 	<view class="wrapper">
 		<view>
-			<view class="header">
+			<view class="header" @click="toLink(`/pages/userInfo/userInfo`)">
 				<view class="left">
-					<image src="../../../static/logo.png" class="head-img" @click="goMeIndex" mode="aspectFill">
+					<image src="../../../static/logo.png" class="head-img" mode="aspectFill">
 					</image>
 					<view class="text-wrap">
 						<view class="name">人间小苦瓜啊</view>
@@ -54,6 +54,24 @@
 					<view class="content">
 						<text class="cuIcon-circlefill text-blue"></text>
 						<text class="text-grey">我的随便看</text>
+					</view>
+				</view>
+				<view class="cu-item" @click="toLink(`/pages/register/register`)">
+					<view class="content">
+						<text class="cuIcon-circlefill text-blue"></text>
+						<text class="text-grey">发布商品</text>
+					</view>
+				</view>
+				<view class="cu-item" @click="toLink(`/pages/register/register`)">
+					<view class="content">
+						<text class="cuIcon-circlefill text-blue"></text>
+						<text class="text-grey">发布随便看</text>
+					</view>
+				</view>
+				<view class="cu-item" @click="toLink(`/pages/register/register`)">
+					<view class="content">
+						<text class="cuIcon-circlefill text-blue"></text>
+						<text class="text-grey">发布视频</text>
 					</view>
 				</view>
 			</view>
@@ -109,6 +127,9 @@
 <style lang="scss" scoped>
 	image {
 		background: none;
+	}
+	.wrapper {
+		padding-bottom: 160rpx;
 	}
 
 	.header {
