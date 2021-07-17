@@ -24,7 +24,7 @@ class alert {
 			title: title,
 			cancelText:cancelText,
 			content: content,
-			confirmColor: '#ff617b',
+			confirmColor: '#0081ff',
 			showCancel: showCancel,
 			confirmText: confirmText,
 			success(res) {
@@ -67,14 +67,17 @@ class alert {
 	 * 前往登录
 	 */
 	$toLogin() {
-		this.showModal({
-			content: '先登录吧',
-			call() {
-				uni.navigateTo({
-					url: '/pages/login/login'
-				})
-			}
+		uni.showModal({
+			content: '222'
 		})
+		// this.showModal({
+		// 	content: '登录信息失败，前往登录吧',
+		// 	call() {
+		// 		uni.navigateTo({
+		// 			url: '/pages/login/login'
+		// 		})
+		// 	}
+		// })
 	}
 
 	/**

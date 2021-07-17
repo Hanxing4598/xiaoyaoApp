@@ -22,7 +22,7 @@
 					<text>{{item.name}}</text>
 				</view>
 			</view>
-			<view class="box-link-wrap">
+			<!-- <view class="box-link-wrap">
 			    <view class="box" @click="goMyProfit">
 			        <view class="text">
 			            <text>钱包</text>
@@ -30,7 +30,7 @@
 			        <view class="num price"><text class="s">￥</text>10000</view>
 					<button class="cu-btn bg-blue shadow withdraw-button" @tap="showModal" data-target="menuModal">我要提现</button>
 			    </view>
-			</view>
+			</view> -->
 			<view class="cu-list menu sm-border">
 				<view class="cu-item">
 					<view class="content">

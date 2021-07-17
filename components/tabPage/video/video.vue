@@ -1,5 +1,5 @@
 <template>
-	<div class="page" :style="{ height: height }">
+	<div class="page" :style="{ height: '100vh' }">
 		<swiper
 			class="swiper"
 			:vertical="true"
@@ -103,6 +103,10 @@
 					{text: '发条弹幕2',color: '#fff',time: 4,avatar:'../../static/avatar.png'},
 					{text: '发条弹幕3',color: '#fff',time: 5,avatar:'../../static/avatar.png'},
 				],
+				pager: {
+					page: 1,
+					num: 10
+				}
 			}
 	    },
 		created(){
@@ -170,8 +174,8 @@
 			},
 			pushVideoList(){
 				return getVideoList({
-					page: 1,
-					pageNum: 10
+					page: this.pager.page,
+					pageNum: this.pager.num
 				}).then(res => {
 					let videoGroup = []
 					if (res.code === 200) {
@@ -192,12 +196,11 @@
 						}
 						
 						let len = this.videoList.filter(item=>item.src).length
-						console.log('len', len, this.videoList, videoGroup.length)
 						for(let i = len;i<len+videoGroup.length;i++){
 							this.$set(this.videoList,i,videoGroup[i-len])
-							
 						}
 					}
+					this.pager.page++
 				})
 			},
 			tapLove(){

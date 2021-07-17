@@ -35,6 +35,6 @@ for (var inter in interfaceMap) {
 }
 
 
-var server = app.listen(3001, function() {
+var server = app.listen(3000, function() {
 	console.log('服务已启动...');
 })

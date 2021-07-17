@@ -3,7 +3,7 @@
 		<form>
 			<view class="cu-form-group">
 				<view class="title">头像</view>
-				<view class="cu-avatar">
+				<view class="cu-avatar" @click="changeAvatar">
 					<image class="avatar" src="../../static/logo.png" mode="aspectFill"></image>
 				</view>
 			</view>
@@ -72,25 +72,34 @@
 		},
 		onLoad() {
 			console.log(this.endDate)
+			uni.showModal({
+				content: '222',
+				title: '提示'
+			})
 		},
 		components: {
 			pickRegions
 		},
 		methods: {
 			submitForm() {
-				console.log('1111')
+				console.log(this.formData)
 			},
 			handleGetRegion(data) {
-				console.log(data)
+				this.formData.city = data.map(item => item.name).join('')
 			},
 			birthdayChange(date) {
-				console.log(date)
+				this.formData.birthday = date.detail.value
+			},
+			changeAvatar() {
+				this.$utils.$upload({
+					count: 2
+				})
 			}
 		}
 	}
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" scoped> 
 	.avatar {
 		width: 100%;
 		height: 100%;

@@ -64,7 +64,7 @@
 			navChange: function(e) {
 				this.PageCur = e.currentTarget.dataset.cur
 				uni.navigateTo({
-					url: `/pages/tabPage/${this.PageCur}/${this.PageCur}?withFooter=true`
+					url: `/pages/tabPage/${this.PageCur}/${this.PageCur}`
 				})
 			},
 			toPage(url) {

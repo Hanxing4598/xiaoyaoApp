@@ -1,6 +1,6 @@
 module.exports = {
 	mysqlConfig: {
-		host: '127.0.0.1',  // 远程主机名
+		host: 'localhost',  // 远程主机名
 		user: 'root',  // 数据库用户名
 		port: '3306',  //  端口
 		password: '123456',  // 数据库密码

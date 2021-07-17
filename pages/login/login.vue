@@ -6,7 +6,7 @@
 		<form class="form" @submit="submit">
 			<view class="item">
 				<view class="icon cuIcon-people"></view>
-				<input :value="record?record.phone:''" name="phone" type="phone" placeholder="请输入手机号码" />
+				<input :value="record?record.phone:''" name="phone" placeholder="请输入登录名" />
 			</view>
 			<view class="item">
 				<view class="icon cuIcon-lock"></view>
@@ -17,56 +17,15 @@
 			</view>
 			<view class="is-rember">
 				<label @tap="hasRember">
-					<checkbox color="#41a0fc" :checked="isRember?true:false" /><text>记住密码</text>
+					<checkbox :class="isRember?'checked':''" class="blue" :checked="isRember?true:false" /><text>记住密码</text>
 				</label>
 			</view>
 			<button form-type="submit" type="primary">登录</button>
 			<view class="other">
 				<navigator url="/pages/register/register">立即注册</navigator>
-				<navigator url="/pages/login/forgetPass">忘记密码</navigator>
+				<!-- <navigator url="/pages/login/forgetPass">忘记密码</navigator> -->
 			</view>
 		</form>
-
-		<!-- #ifndef H5 -->
-		<view class="other-login">
-			<!-- #ifdef APP-PLUS -->
-			<!--<view class="item" @tap="wxLogin">
-				<uni-icons color="#3cb035" size="35" type="weixin"></uni-icons>
-				<view>微信登录</view>
-			</view>
-			<uni-popup type="bottom" ref="userToken">
-				<view class="user-token">
-					<view class="tip">
-						<text>验证</text>
-						<text class="cancel" @tap="cancel">取消</text>
-					</view>
-					<view class="item">
-						<view class="title">平台账号：</view>
-						<view class="input">
-							<input placeholder="您在本平台注册时的账号" v-model="account" type="number" value="" />
-						</view>
-					</view>
-					<view class="item">
-						<view class="title">密码：</view>
-						<view class="input" style="border-bottom: none;">
-							<input placeholder="您在本平台注册时的密码" type="password" v-model="accountPassword" value="" />
-						</view>
-					</view>
-					<view class="btn">
-						<button type="primary" @tap="bindLogin">验证</button>
-					</view>
-				</view>
-			</uni-popup>-->
-
-			<!-- #endif -->
-			<!-- #ifdef MP-WEIXIN -->
-<!--			<button class="item" type="default" open-type="getUserInfo" @getuserinfo="getUserInfo">
-				<uni-icons color="#3cb035" size="35" type="weixin"></uni-icons>
-				<view>微信登录</view>
-			</button>-->
-			<!-- #endif -->
-		</view>
-		<!-- #endif -->
 	</view>
 </template>
 
@@ -94,6 +53,13 @@
 			}
 		},
 		onLoad() {
+			console.log(this.$alert.showToast)
+			this.$alert.showToast({
+				title: '登录成功！',
+				callback() {
+					// uni.navigateBack()
+				}
+			})
 			// this.$http.get(this.API.getRsaKey, {
 			// 	data: {}
 			// }).then(data => {
