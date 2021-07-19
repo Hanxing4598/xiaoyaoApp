@@ -160,6 +160,9 @@
 			};
 		},
 		onLoad(options) {
+			if (options.type) {
+				this.curTab = Number(options.type)
+			}
 			// this.userId = options.userId
 			// if (this.userId == uni.getStorageSync('userInfo').id) {
 			// 	this.hide = true
@@ -623,7 +626,7 @@
 		.nav-item {
 			padding: 22rpx 40rpx;
 			flex: 1;
-			font-size: 36rpx;
+			font-size: 28rpx;
 			color: #aaaaaa;
 			&.active {
 				position: relative;

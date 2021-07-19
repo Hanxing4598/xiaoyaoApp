@@ -32,16 +32,16 @@
 			    </view>
 			</view> -->
 			<view class="cu-list menu sm-border">
-				<view class="cu-item">
+				<view class="cu-item" @click="toLink(`/pages/followList/followList`)">
 					<view class="content">
 						<text class="cuIcon-circlefill text-blue"></text>
 						<text class="text-grey">我的关注</text>
 					</view>
 				</view>
-				<view class="cu-item">
+				<view class="cu-item" @click="toLink(`/pages/userDetail/userDetail`)">
 					<view class="content">
 						<text class="cuIcon-circlefill text-blue"></text>
-						<text class="text-grey">我的喜欢</text>
+						<text class="text-grey">我的作品</text>
 					</view>
 				</view>
 				<view class="cu-item">
@@ -50,25 +50,19 @@
 						<text class="text-grey">我的足迹</text>
 					</view>
 				</view>
-				<view class="cu-item">
-					<view class="content">
-						<text class="cuIcon-circlefill text-blue"></text>
-						<text class="text-grey">我的随便看</text>
-					</view>
-				</view>
-				<view class="cu-item" @click="toLink(`/pages/register/register`)">
+				<view class="cu-item" @click="toLink(`/pages/addProduct/addProduct`)">
 					<view class="content">
 						<text class="cuIcon-circlefill text-blue"></text>
 						<text class="text-grey">发布商品</text>
 					</view>
 				</view>
-				<view class="cu-item" @click="toLink(`/pages/register/register`)">
+				<view class="cu-item" @click="toLink(`/pages/addLookAround/addLookAround`)">
 					<view class="content">
 						<text class="cuIcon-circlefill text-blue"></text>
 						<text class="text-grey">发布随便看</text>
 					</view>
 				</view>
-				<view class="cu-item" @click="toLink(`/pages/register/register`)">
+				<view class="cu-item" @click="toLink(`/pages/upload/upload`)">
 					<view class="content">
 						<text class="cuIcon-circlefill text-blue"></text>
 						<text class="text-grey">发布视频</text>

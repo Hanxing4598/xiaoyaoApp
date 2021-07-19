@@ -11,7 +11,7 @@
 			<view class="action text-white" @click="navChange" data-cur="pic">
 				<view :class="PageCur === 'pic' ? 'cuIcon-picfill': 'cuIcon-pic'"></view> 随便看
 			</view>
-			<view class="action text-white add-action" @click="toPage('/pages/upload/upload')" >
+			<view class="action text-white add-action" @click="publish" >
 				<button class="cu-btn cuIcon-add bg-white shadow"></button>
 				发布
 			</view>
@@ -70,6 +70,14 @@
 			toPage(url) {
 				uni.navigateTo({
 					url
+				})
+			},
+			publish() {
+				uni.showActionSheet({
+					itemList: ['发布视频', '发布随便看'],
+					success(res) {
+						console.log(res)
+					}
 				})
 			}
 		}

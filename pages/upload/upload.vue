@@ -9,20 +9,20 @@
             <view class="form-item">
                 <view class="form-content">
                     <view class="upload-wrap">
-                        <image :src="coverUrl ? coverUrl : './upload_img.png'" mode="widthFix" @click="uploadCover"></image>
+                        <image src="./upload_img.png" mode="widthFix" @click="uploadCover"></image>
                     </view>
                 </view>
             </view>
             <view class="form-item">
                 <view class="form-content">
                     <view class="upload-wrap video-wrap">
-                        <view class="video-cover-wrap video" @click="showVideoEvt">
+                        <!-- <view class="video-cover-wrap video" @click="showVideoEvt">
                             <view class="play-icon"></view>
-                        </view>
+                        </view> -->
                         <img v-if="tempFilePath==''" class="video" mode="widthFix" src="./upload_video.png" @click="upload" /> 
-                        <view class="video-cover" @click="upload">
+                        <!-- <view class="video-cover" @click="upload">
                             <text class="cuIcon-refresh"></text><text class="refresh">重新上传</text>
-                        </view>
+                        </view> -->
                     </view>
                 </view>
             </view>
@@ -82,7 +82,7 @@
       if (uni.getStorageSync('uploadTreaty')) {
         return
       }
-      this.alert.showModal({
+      this.$alert.showModal({
         title: '温馨提示',
         content: '小鹿云播尊重并保护知识产权，支持原创。希望您遵守知识产权相关法律，确保您制作、上传的视频及其中的内容不侵犯他人的知识产权及其它合法权益',
         confirmText: '我知道了',
@@ -255,7 +255,10 @@
   }
 </script>
 
-<style lang="scss">
+<style scoped lang="scss">
+	page {
+		background-color: #fff;
+	}
     .choice-music {
         display: flex;
         align-items: center;
