@@ -23,7 +23,7 @@ var mysql = {
 	 */
 	selectPager(tableName, limit, fieldStr, where) {
 		return new Promise((resolve, rej) => {
-			sql.table(tableName).field(fieldStr).where(where).limit(limit[0], limit[1]*limit[0]).select(true).exec().then(data => {
+			sql.table(tableName).field(fieldStr).where(where).limit((limit[0]-1) * limit[1], limit[1]).select(true).exec().then(data => {
 				exec('select count(*) as total from ' + tableName).then(totalData => {
 					resolve({
 						page: Number(limit[0]),

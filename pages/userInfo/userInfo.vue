@@ -13,7 +13,7 @@
 			</view>
 			<view class="cu-form-group">
 				<view class="title">昵称</view>
-				<input class="input" placeholder="请输入昵称"></input>
+				<input class="input" placeholder="请输入昵称" value="人间小苦瓜啊"></input>
 			</view>
 			<view class="cu-form-group">
 				<view class="title">生日</view>

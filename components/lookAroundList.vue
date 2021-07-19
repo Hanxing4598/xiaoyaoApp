@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<view class="cu-card dynamic" :class="isCard?'no-card':''" v-for="item in list" :key="item.id">
+		<view class="cu-card dynamic margin-bottom-sm" :class="isCard?'no-card':''" v-for="item in list" :key="item.id" @click="toDetail(item)">
 			<view class="cu-item shadow">
 				<view class="cu-list menu-avatar">
 					<view class="cu-item">
@@ -18,7 +18,7 @@
 				</view>
 				<view class="grid flex-sub padding-lr" :class="isCard?'col-3 grid-square':'col-1'">
 					<view class="bg-img" :class="isCard?'':'only-img'" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"
-					 v-for="(item,index) in isCard?5:1" :key="index">
+					 v-for="(item,index) in isCard?5:1" :key="index" @click="previewImg()">
 					</view>
 				</view>
 				<view class="text-gray text-sm text-right padding">
@@ -47,6 +47,26 @@
 			return {
 				isCard: true
 			};
+		},
+		created() {
+			console.log(uni.showModal)
+			uni.showModal({
+				title: 'jvfjji',
+				content: '12121'
+			})
+		},
+		methods: {
+			toDetail(item) {
+				uni.navigateTo({
+					url: `/pages/lookAroundDetail/lookAroundDetail?id=${item.id}`
+				})
+			},
+			previewImg() {
+				uni.previewImage({
+					urls: this.list,
+					current: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg'
+				});
+			}
 		}
 	}
 </script>

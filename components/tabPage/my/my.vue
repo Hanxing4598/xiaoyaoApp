@@ -44,7 +44,7 @@
 						<text class="text-grey">我的作品</text>
 					</view>
 				</view>
-				<view class="cu-item">
+				<view class="cu-item" @click="toLink(`/pages/history/history`)">
 					<view class="content">
 						<text class="cuIcon-circlefill text-blue"></text>
 						<text class="text-grey">我的足迹</text>
@@ -81,22 +81,25 @@
 					color: 'gray',
 					name: '待付款',
 					badge: 0,
-					url: ''
+					url: '/pages/order/list/list?type=1'
 				},{
 					cuIcon: 'send',
 					color: 'gray',
 					name: '待发货',
-					badge: 2
+					badge: 2,
+					url: '/pages/order/list/list?type=2'
 				},{
 					cuIcon: 'deliver',
 					color: 'gray',
 					name: '待收货',
-					badge: 5
+					badge: 5,
+					url: '/pages/order/list/list?type=3'
 				},{
 					cuIcon: 'safe',
 					color: 'gray',
 					name: '已完成',
-					badge: 0
+					badge: 0,
+					url: '/pages/order/list/list?type=4'
 				}]
 			}
 		},

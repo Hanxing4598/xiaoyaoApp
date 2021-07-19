@@ -6,7 +6,7 @@
 		<Video v-if="PageCur === 'video'"></Video>
 		<view class="cu-bar tabbar footer" :class="{ black: PageCur === 'video' }">
 			<view class="action text-white" @click="navChange" data-cur="video">
-				<view :class="PageCur === 'video' ? 'cuIcon-videofill': 'cuIcon-video'"></view> 首页
+				<view :class="PageCur === 'video' ? 'cuIcon-videofill': 'cuIcon-video'"></view> 视频
 			</view>
 			<view class="action text-white" @click="navChange" data-cur="pic">
 				<view :class="PageCur === 'pic' ? 'cuIcon-picfill': 'cuIcon-pic'"></view> 随便看
@@ -40,14 +40,14 @@
 		name: "index",
 		data() {
 			return {
-				PageCur: 'video'
+				PageCur: 'pic'
 			};
 		},
 		props: {
 			type: {
 				type: String,
 				default() {
-					return 'video'
+					return 'pic'
 				}
 			}
 		},
@@ -58,6 +58,9 @@
 			Video
 		},
 		created() {
+			uni.showModal({
+				content: '21212'
+			})
 			this.PageCur = this.type
 		},
 		methods: {
@@ -90,7 +93,7 @@
 		bottom: 0;
 		left: 0;
 		right: 0;
-		z-index: 9999;
+		z-index: 99;
 		background-color: $uni-theme-color;
 		&.black {
 			background-color: rgba($color: #000000, $alpha: 0.3);

@@ -1,7 +1,7 @@
 <template>
 	<view class="notice-wrapper">
 		<view class="cu-list menu-avatar">
-			<view class="cu-item " v-for="item in 20">
+			<view class="cu-item " v-for="(item, index) in 10" :key="item">
 				<view class="cu-avatar radius lg" style="background-image:url(https://ossweb-img.qq.com/images/lol/img/champion/Morgana.png);"></view>
 				<view class="content">
 					<view class="text-pink"><view class="text-cut">莫甘娜</view></view>

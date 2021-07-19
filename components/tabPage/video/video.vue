@@ -8,7 +8,6 @@
 			:current="index">
 			<swiper-item v-for="(item, idx) in videoList" :key="idx" class="swiper-item">
 					<!-- 视频渲染数预加载数影响性能 -->
-					{{index-idx}}
 					<div v-if="Math.abs(index-idx)<=1" class="video-box">
 						<block v-if="item.src">
 							<chunlei-video class="video" :src="item.src"  :height="height" :width="width"
@@ -37,38 +36,17 @@
 								</view>
 							</view>
 							<cover-view class="cover-view-right">
-								<cover-image :src="item.avater" class="avater img" @click.stop="tapAvater"></cover-image>
-								<!-- #ifdef APP-PLUS-NVUE -->
-								<text class="right-text-avater">+</text>
-								<text class="right-text"></text>
-								<!-- #endif -->
-								<!-- #ifndef APP-PLUS-NVUE -->
-								<view class="right-text-avater">+</view>
+								<cover-image :src="item.avater" class="avater img" @click.stop="tapAvater" @click="toLink(`/pages/userDetail/userDetail?id=${item.user_id}`)"></cover-image>
+								<view class="right-text-avater cuIcon-add"></view>
 								<view class="right-text"></view>
-								<!-- #endif -->
 								<view class="cuIcon-likefill operate-icon" :class="{ active: item.check }" @click.stop="tapLove"></view>
-								<!-- #ifdef APP-PLUS-NVUE -->
 								<text class="right-text">{{item.like}}</text>
-								<!-- #endif -->
-								<!-- #ifndef APP-PLUS-NVUE -->
-								<cover-view class="right-text">{{item.like}}</cover-view>
-								<!-- #endif -->
-								<view class="cuIcon-messagefill operate-icon" @click.stop="tapMsg(item)"></view>
+								<!-- <view class="cuIcon-messagefill operate-icon" @click.stop="tapMsg(item)"></view> -->
 								
-								<!-- #ifdef APP-PLUS-NVUE -->
-								<text class="right-text">{{item.comment}}</text>
-								<!-- #endif -->
-								<!-- #ifndef APP-PLUS-NVUE -->
-								<cover-view class="right-text">{{item.comment}}</cover-view>
-								<!-- #endif -->
+								<!-- <text class="right-text">{{item.comment}}</text> -->
+								<!-- <cover-view class="right-text">{{item.comment}}</cover-view> -->
 								<view class="cuIcon-forwardfill operate-icon" @click.stop="tapShare"></view>
-								<!-- #ifdef APP-PLUS-NVUE -->
 								<text class="right-text">分享</text>
-								<!-- #endif -->
-								<!-- #ifndef APP-PLUS-NVUE -->
-								<cover-view class="right-text">分享</cover-view>
-								<!-- #endif -->
-								
 							</cover-view>
 						</block>
 						<image src="/static/video/logo.png" :style="{ height: height }" v-else  class="video-box"></image>
@@ -153,6 +131,14 @@
 			}
 		},
 	    methods: {
+			toLink(url) {
+				if (!url) {
+					return
+				}
+				uni.navigateTo({
+					url
+				})
+			},
 			animationFinish(e){
 				//#ifdef APP-PLUS
 				this.changeCurrent(e)
