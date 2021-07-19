@@ -18,7 +18,7 @@
 				</view>
 				<view class="grid flex-sub padding-lr" :class="isCard?'col-3 grid-square':'col-1'">
 					<view class="bg-img" :class="isCard?'':'only-img'" style="background-image:url(https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg);"
-					 v-for="(item,index) in isCard?5:1" :key="index" @click="previewImg()">
+					 v-for="(item,index) in isCard?5:1" :key="index" @click.stop="previewImg()">
 					</view>
 				</view>
 				<view class="text-gray text-sm text-right padding">
@@ -49,11 +49,6 @@
 			};
 		},
 		created() {
-			console.log(uni.showModal)
-			uni.showModal({
-				title: 'jvfjji',
-				content: '12121'
-			})
 		},
 		methods: {
 			toDetail(item) {
@@ -63,7 +58,7 @@
 			},
 			previewImg() {
 				uni.previewImage({
-					urls: this.list,
+					urls: ['https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg'],
 					current: 'https://ossweb-img.qq.com/images/lol/web201310/skin/big10006.jpg'
 				});
 			}

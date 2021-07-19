@@ -58,9 +58,6 @@
 			Video
 		},
 		created() {
-			uni.showModal({
-				content: '21212'
-			})
 			this.PageCur = this.type
 		},
 		methods: {
