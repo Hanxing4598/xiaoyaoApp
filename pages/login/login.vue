@@ -53,13 +53,6 @@
 			}
 		},
 		onLoad() {
-			console.log(this.$alert.showToast)
-			this.$alert.showToast({
-				title: '登录成功！',
-				callback() {
-					// uni.navigateBack()
-				}
-			})
 			// this.$http.get(this.API.getRsaKey, {
 			// 	data: {}
 			// }).then(data => {
@@ -227,7 +220,6 @@
 					title: '正在登录...',
 					mask: true
 				})
-
 				let submitParams = {
 					mobile: detail.value.phone
 				};
@@ -276,17 +268,14 @@
 		.user-token {
 			background-color: #FFFFFF;
 			padding: $uni-spacing-col-base $uni-spacing-row-base;
-
 			.tip {
 				text-align: center;
 				position: relative;
-
 				text {
 					&:first-child {
 						color: $uni-theme-color;
 						font-size: $uni-font-size-lg;
 					}
-
 					&.cancel {
 						position: absolute;
 						top: 50%;
@@ -297,64 +286,52 @@
 					}
 				}
 			}
-
 			.item {
 				margin-top: $uni-spacing-col-base;
-
 				.input {
 					padding: $uni-spacing-col-base 0;
 					border-bottom: 1rpx solid $uni-border-color;
-
 					input {
 						padding-left: $uni-spacing-row-base;
 						font-size: $uni-font-size-base;
 					}
 				}
 			}
-
 			.btn {
 				margin-top: $uni-spacing-col-lg;
 				padding-bottom: constant(safe-area-inset-bottom);
 				padding-bottom: env(safe-area-inset-bottom);
 			}
 		}
-
 		.other-login {
 			display: flex;
 			padding-top: 100rpx;
 			padding-bottom: $uni-spacing-col-lg;
 			justify-content: center;
-
 			>button {
 				line-height: normal;
 				background: none;
-
 				&::after {
 					border: none;
 				}
 			}
-
 			>.item {
 				text-align: center;
-
 				view {
 					font-size: $uni-font-size-sm;
 					color: gray;
 				}
 			}
 		}
-
 		.logo {
 			text-align: center;
 			padding: 120rpx 0;
-
 			image {
 				width: 210rpx;
 				height: 210rpx;
 				background: none;
 			}
 		}
-
 		.form {
 			padding: 0 $uni-spacing-row-lg;
 			display: block;
@@ -367,36 +344,29 @@
 				padding: $uni-spacing-col-lg 0;
 				border-bottom: 1rpx solid $uni-border-color;
 				margin: 0 $uni-spacing-row-base;
-
 				.icon {
 					padding-right: $uni-spacing-row-base;
 				}
-
 				input {
 					width: 100%;
 					font-size: $uni-font-size-base;
 				}
 			}
-
 			.is-rember {
 				padding-bottom: $uni-spacing-col-lg;
 				margin-left: $uni-spacing-row-base;
 				margin-top: $uni-spacing-col-sm;
-
 				label {
 					display: flex;
 					align-items: center;
-
 					checkbox {
 						transform: scale(.7);
 					}
-
 					text {
 						font-size: $uni-font-size-sm;
 					}
 				}
 			}
-
 			.other {
 				display: flex;
 				justify-content: space-between;

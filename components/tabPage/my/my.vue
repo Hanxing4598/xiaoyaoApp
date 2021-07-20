@@ -1,7 +1,7 @@
 <template>
 	<view class="wrapper">
 		<view>
-			<view class="header" @click="toLink(`/pages/userInfo/userInfo`)">
+			<view class="header" @click="toLink(`/pages/userInfo/userInfo`)" v-if="isLogin">
 				<view class="left">
 					<image src="../../../static/logo.png" class="head-img" mode="aspectFill">
 					</image>
@@ -11,6 +11,16 @@
 					</view>
 				</view>
 				<i class="cuIcon-right right"></i>
+			</view>
+			<view class="flex justify-center header">
+				<view class="left">
+					<view class="text-wrap">
+						<view class="name">你还未登录哦</view>
+						<view class="sub-name">
+							<button class="cu-btn round bg-blue shadow" @click="toLink(`/pages/login/login`)" >立即登录</button>
+						</view>
+					</view>
+				</view>
 			</view>
 			<view class="cu-list grid col-4 no-border" >
 				<view class="cu-item" v-for="(item,index) in cuIconList" :key="index" @click="toLink(item.url)">
@@ -108,6 +118,11 @@
 			let self = this
 			//self.getIsLogin()
 		},
+		computed: {
+			isLogin() {
+				return this.$store.state.user.isLogin
+			}
+		},
 		async onPullDownRefresh() {},
 		methods: {
 			toLink(url) {
@@ -128,7 +143,6 @@
 	.wrapper {
 		padding-bottom: 160rpx;
 	}
-
 	.header {
 		display: flex;
 		justify-content: space-between;

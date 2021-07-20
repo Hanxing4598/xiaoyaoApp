@@ -6,7 +6,6 @@ var {
 	exec,
 	sql
 } = require('mysqls')
-var mysql = require('mysql');
 
 init(mysqlConfig)
 var mysql = {
